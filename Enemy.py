@@ -16,7 +16,8 @@ class Enemy(pygame.sprite.Sprite):
         self.speed *= -1
         
     def update(self, delta_time):
-        self.rect.move_ip(round(self.speed * delta_time), 0)
+        self.x_position += self.speed * delta_time
+        self.rect.x = self.x_position
             
     def draw(self, surface):
         surface.blit(self.image, self.rect)

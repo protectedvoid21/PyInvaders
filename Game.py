@@ -36,7 +36,6 @@ class Game:
             self.screen.fill((0, 0, 0))
 
             self.clock.tick(self.framerate)
-            print(self.clock.get_fps())
             now = time.time()
             self.delta_time = now - self.prev_time
             self.prev_time = now
@@ -44,5 +43,13 @@ class Game:
             for game_obj in self.game_objects:
                 game_obj.update(self.delta_time)
                 game_obj.draw(self.screen)
+                
+            for bullet in self.player.bullets:
+                for enemy in self.enemy_wave.enemy_list:
+                    if bullet.rect.colliderect(enemy):
+                        self.player.bullets.remove(bullet)
+                        self.enemy_wave.enemy_list.remove(enemy)
+                        bullet.kill()
+                        enemy.kill()
 
             pygame.display.update()

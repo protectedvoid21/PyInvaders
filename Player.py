@@ -12,7 +12,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.center = (start_x, start_y)
         self.max_right = max_y
 
-        self.shoot_cooldown = 2.0
+        self.shoot_cooldown = 1.0
         self.actual_cooldown = 0.0
         self.bullets = []
 
