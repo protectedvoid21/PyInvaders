@@ -9,7 +9,7 @@ class Bullet(pygame.sprite.Sprite):
         self.speed = -500 if is_friendly else 500
 
     def update(self, delta_time):
-        self.rect.move_ip(0, self.speed * delta_time)
+        self.rect.move_ip(0, round(self.speed * delta_time))
 
     def draw(self, surface):
         pygame.draw.rect(surface, (255, 255, 255), self.rect)
