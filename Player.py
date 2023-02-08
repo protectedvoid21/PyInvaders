@@ -12,28 +12,29 @@ class Player(pygame.sprite.Sprite):
         self.rect.center = (start_x, start_y)
         self.max_right = max_y
 
-        self.shoot_cooldown = 2
-        self.actual_cooldown = 0
+        self.shoot_cooldown = 2.0
+        self.actual_cooldown = 0.0
         self.bullets = []
 
-    def update(self):
+    def update(self, delta_time):
         pressed_keys = pygame.key.get_pressed()
         
         for bullet in self.bullets:
-            bullet.update()
+            bullet.update(delta_time)
 
         if pressed_keys[pygame.K_SPACE]:
-            if self.actual_cooldown == 0:
+            if self.actual_cooldown <= 0:
                 self.actual_cooldown = self.shoot_cooldown
                 self.bullets.append(Bullet(self.rect.x, self.rect.y, True))
-            #add cooldown
+            else:
+                self.actual_cooldown -= delta_time
 
         if self.rect.left > 0:
             if pressed_keys[pygame.K_a]:
-                self.rect.move_ip(-5, 0)
+                self.rect.move_ip(-500 * delta_time, 0)
         if self.rect.left < self.max_right:
             if pressed_keys[pygame.K_d]:
-                self.rect.move_ip(5, 0)
+                self.rect.move_ip(500 * delta_time, 0)
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)

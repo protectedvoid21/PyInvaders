@@ -15,8 +15,8 @@ class Enemy(pygame.sprite.Sprite):
     def change_direction(self):
         self.moving_right = not self.moving_right
         
-    def update(self):
-        self.rect.move_ip(5 if self.moving_right else -5, 0)
+    def update(self, delta_time):
+        self.rect.move_ip((100 if self.moving_right else -100) * delta_time, 0)
             
     def draw(self, surface):
         surface.blit(self.image, self.rect)
