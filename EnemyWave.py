@@ -21,6 +21,9 @@ class EnemyWave:
         self.actual_cooldown = self.move_cooldown
 
     def update(self):
+        for enemy in self.enemy_list:
+            enemy.update()
+        
         if self.actual_cooldown > 0:
             self.actual_cooldown -= GameTime.delta_time
             return
@@ -33,7 +36,7 @@ class EnemyWave:
                 enemy.change_direction()
 
         for enemy in self.enemy_list:
-            enemy.update()
+            enemy.move()
 
     def draw(self, surface):
         for enemy in self.enemy_list:

@@ -42,7 +42,7 @@ class Game:
                 for enemy in self.enemy_wave.enemy_list:
                     if bullet.rect.colliderect(enemy):
                         self.player.bullets.remove(bullet)
-                        enemy.start_dying()
+                        enemy.die()
                         bullet.kill()
 
             pygame.display.update()
