@@ -15,7 +15,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.center = (x_position, y_position)
         self.x_position = x_position
         self.speed = 15
-        self.death_length = 0.6
+        self.death_length = 0.4
         self.is_dying = False
 
     def change_direction(self):
