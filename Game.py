@@ -1,9 +1,9 @@
 import sys
 
 import pygame
-import time
 
 from EnemyWave import EnemyWave
+from GameTime import GameTime
 from Player import Player
 
 
@@ -15,10 +15,7 @@ class Game:
         self.SCREEN_HEIGHT = 600
         self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
 
-        self.clock = pygame.time.Clock()
-        self.prev_time = time.time()
-        self.delta_time = 0.0
-        self.framerate = 120
+        self.game_time = GameTime(60)
 
         self.player = Player(self.SCREEN_WIDTH / 2, self.SCREEN_HEIGHT * 5 / 6, self.SCREEN_WIDTH)
         self.enemy_wave = EnemyWave()
@@ -35,21 +32,17 @@ class Game:
 
             self.screen.fill((0, 0, 0))
 
-            self.clock.tick(self.framerate)
-            now = time.time()
-            self.delta_time = now - self.prev_time
-            self.prev_time = now
+            self.game_time.update()
 
             for game_obj in self.game_objects:
-                game_obj.update(self.delta_time)
+                game_obj.update()
                 game_obj.draw(self.screen)
                 
             for bullet in self.player.bullets:
                 for enemy in self.enemy_wave.enemy_list:
                     if bullet.rect.colliderect(enemy):
                         self.player.bullets.remove(bullet)
-                        self.enemy_wave.enemy_list.remove(enemy)
+                        enemy.start_dying()
                         bullet.kill()
-                        enemy.kill()
 
             pygame.display.update()
