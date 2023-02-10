@@ -2,8 +2,8 @@ import random
 
 import pygame.image
 
-from Enemy import Enemy
-from GameTime import GameTime
+from src.entities.Enemy import Enemy
+from src.utils.GameTime import GameTime
 
 
 class EnemyWave:

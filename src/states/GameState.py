@@ -2,11 +2,10 @@ import sys
 
 import pygame
 
-from EnemyWave import EnemyWave
-from GameTime import GameTime
-from Player import Player
-from State import State
-from TextManager import TextManager
+from src.entities.EnemyWave import EnemyWave
+from src.entities.Player import Player
+from src.states.State import State
+from src.utils.TextManager import TextManager
 
 
 class GameState(State):

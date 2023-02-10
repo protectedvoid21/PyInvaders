@@ -1,6 +1,6 @@
 import pygame
 
-from StateManager import StateManager
+from src.states.StateManager import StateManager
 
 pygame.init()
 

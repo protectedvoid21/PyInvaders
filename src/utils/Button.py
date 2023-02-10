@@ -1,6 +1,6 @@
 import pygame.sprite
 
-from Text import Text
+from src.utils.Text import Text
 
 
 class Button(pygame.sprite.Sprite):

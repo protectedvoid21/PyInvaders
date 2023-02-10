@@ -1,7 +1,7 @@
 import pygame
 
-from Bullet import Bullet
-from GameTime import GameTime
+from src.entities.Bullet import Bullet
+from src.utils.GameTime import GameTime
 
 
 class Player(pygame.sprite.Sprite):

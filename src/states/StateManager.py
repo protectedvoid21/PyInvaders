@@ -2,8 +2,8 @@ import sys
 
 import pygame
 
-from GameTime import GameTime
-from MenuState import MenuState
+from src.utils.GameTime import GameTime
+from src.states.MenuState import MenuState
 
 
 class StateManager:

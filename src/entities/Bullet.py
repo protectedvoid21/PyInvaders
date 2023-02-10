@@ -1,6 +1,6 @@
 import pygame.sprite
 
-from GameTime import GameTime
+from src.utils.GameTime import GameTime
 
 
 class Bullet(pygame.sprite.Sprite):

@@ -2,8 +2,8 @@ import random
 
 import pygame.sprite
 
-from Bullet import Bullet
-from GameTime import GameTime
+from src.entities.Bullet import Bullet
+from src.utils.GameTime import GameTime
 
 
 class Enemy(pygame.sprite.Sprite):

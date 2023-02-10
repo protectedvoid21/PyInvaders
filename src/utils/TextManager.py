@@ -1,6 +1,6 @@
 import pygame.font
 
-from Text import Text
+from src.utils.Text import Text
 
 
 class TextManager:

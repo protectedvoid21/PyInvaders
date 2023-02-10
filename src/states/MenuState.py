@@ -2,10 +2,10 @@ import sys
 
 import pygame.mouse
 
-from Button import Button
-from GameState import GameState
-from State import State
-from Text import Text
+from src.states.GameState import GameState
+from src.states.State import State
+from src.utils.Button import Button
+from src.utils.Text import Text
 
 
 class MenuState(State):
