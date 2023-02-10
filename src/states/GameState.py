@@ -29,13 +29,16 @@ class GameState(State):
         self.game_objects.append(self.player)
         self.game_objects.append(self.enemy_wave)
         
-        self.game_over_label = Text('Game over!', 40, (300, 250), 'red')
+        self.game_over_label = Text('Game over!', 40, (270, 250), 'red')
 
     def update(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+                
+        if not self.running:
+            return
 
         for game_obj in self.game_objects:
             game_obj.update()

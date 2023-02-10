@@ -1,6 +1,5 @@
 import pygame
 
-from src.entities.Bullet import Bullet
 from src.utils.GameTime import GameTime
 
 
@@ -10,6 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load('images/player.png')
         self.image = pygame.transform.scale(self.image, (self.image.get_width() * 3, self.image.get_height() * 3))
         self.rect = self.image.get_rect()
+        self.start_pos = start_pos
         self.rect.center = start_pos
         self.max_right = max_x
         
@@ -41,6 +41,7 @@ class Player(pygame.sprite.Sprite):
                 
     def die(self):
         self.death_sound.play()
+        self.rect.center = self.start_pos
 
     def draw(self, surface):
         surface.blit(self.image, self.rect) 

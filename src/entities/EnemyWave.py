@@ -9,13 +9,8 @@ from src.utils.GameTime import GameTime
 class EnemyWave:
     def __init__(self, shoot_func):
         self.enemy_bullets = []
-        self.enemy_sprites = []
-        self.enemy_sprites.append(pygame.image.load("images/enemy.png"))
-        self.enemy_sprites.append(pygame.image.load("images/enemy1.png"))
-        self.enemy_sprites.append(pygame.image.load("images/enemy2.png"))
-        self.enemy_sprites.append(pygame.image.load("images/enemy3.png"))
         self.enemy_list = [
-            Enemy(self.enemy_sprites[random.randint(0, len(self.enemy_sprites) - 1)], i * 50 + 50, 60, self, shoot_func)
+            Enemy(random.randint(1, 4), i * 50 + 50, 60, self, shoot_func)
             for i in range(10)]
 
         self.move_cooldown = 1

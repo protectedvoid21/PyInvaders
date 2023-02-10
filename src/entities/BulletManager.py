@@ -1,5 +1,3 @@
-import pygame
-
 from src.entities.Bullet import Bullet
 
 
