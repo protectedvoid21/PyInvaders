@@ -1,3 +1,8 @@
-from Game import Game
+import pygame
 
-Game().loop()
+from StateManager import StateManager
+
+pygame.init()
+
+state_manager = StateManager()
+state_manager.run()

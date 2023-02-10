@@ -8,6 +8,7 @@ from GameTime import GameTime
 
 class EnemyWave:
     def __init__(self):
+        self.enemy_bullets = []
         self.enemy_sprites = []
         self.enemy_sprites.append(pygame.image.load("images/enemy.png"))
         self.enemy_sprites.append(pygame.image.load("images/enemy1.png"))
@@ -23,6 +24,9 @@ class EnemyWave:
     def update(self):
         for enemy in self.enemy_list:
             enemy.update()
+
+        for bullet in self.enemy_bullets:
+            bullet.update()
         
         if self.actual_cooldown > 0:
             self.actual_cooldown -= GameTime.delta_time
@@ -30,10 +34,12 @@ class EnemyWave:
 
         self.actual_cooldown = self.move_cooldown
 
-        if self.enemy_list[-1].rect.x > 730 or self.enemy_list[0].rect.x < 30:
-            self.move_cooldown -= self.move_cooldown * 0.1
-            for enemy in self.enemy_list:
-                enemy.change_direction()
+        if len(self.enemy_list) > 0:
+            if self.enemy_list[-1].rect.x > 730 or self.enemy_list[0].rect.x < 30:
+                self.move_cooldown -= self.move_cooldown * 0.1
+                for enemy in self.enemy_list:
+                    enemy.change_direction()
+        
 
         for enemy in self.enemy_list:
             enemy.move()
@@ -41,3 +47,6 @@ class EnemyWave:
     def draw(self, surface):
         for enemy in self.enemy_list:
             enemy.draw(surface)
+        
+        for bullet in self.enemy_bullets:
+            bullet.draw(surface)

@@ -8,7 +8,7 @@ class Bullet(pygame.sprite.Sprite):
         super().__init__()
         self.rect = pygame.Rect(x_pos, y_pos, 3, 25)
         self.is_friendly = is_friendly
-        self.speed = -500 if is_friendly else 500
+        self.speed = -500 if is_friendly else 250
 
     def update(self):
         self.rect.move_ip(0, round(self.speed * GameTime.delta_time))

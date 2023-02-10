@@ -12,6 +12,9 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (start_x, start_y)
         self.max_right = max_y
+        
+        self.shoot_sound = pygame.mixer.Sound('sounds/player_shoot.wav')
+        self.death_sound = pygame.mixer.Sound('sounds/player_death.wav')
 
         self.shoot_cooldown = 1.0
         self.actual_cooldown = 0.0
@@ -30,6 +33,7 @@ class Player(pygame.sprite.Sprite):
             if self.actual_cooldown <= 0:
                 self.actual_cooldown = self.shoot_cooldown
                 self.bullets.append(Bullet(self.rect.centerx, self.rect.centery - 30, True))
+                self.shoot_sound.play()
 
         if self.rect.left > 0:
             if pressed_keys[pygame.K_a]:
@@ -37,6 +41,9 @@ class Player(pygame.sprite.Sprite):
         if self.rect.left < self.max_right:
             if pressed_keys[pygame.K_d]:
                 self.rect.move_ip(round(500 * GameTime.delta_time), 0)
+                
+    def die(self):
+        self.death_sound.play()
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
