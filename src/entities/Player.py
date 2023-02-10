@@ -5,26 +5,23 @@ from src.utils.GameTime import GameTime
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, start_x, start_y, max_y):
+    def __init__(self, start_pos, max_x, shoot_func):
         super().__init__()
         self.image = pygame.image.load('images/player.png')
         self.image = pygame.transform.scale(self.image, (self.image.get_width() * 3, self.image.get_height() * 3))
         self.rect = self.image.get_rect()
-        self.rect.center = (start_x, start_y)
-        self.max_right = max_y
+        self.rect.center = start_pos
+        self.max_right = max_x
         
         self.shoot_sound = pygame.mixer.Sound('sounds/player_shoot.wav')
         self.death_sound = pygame.mixer.Sound('sounds/player_death.wav')
 
+        self.shoot_func = shoot_func
         self.shoot_cooldown = 1.0
         self.actual_cooldown = 0.0
-        self.bullets = []
 
     def update(self):
         pressed_keys = pygame.key.get_pressed()
-        
-        for bullet in self.bullets:
-            bullet.update()
             
         if self.actual_cooldown > 0:
             self.actual_cooldown -= GameTime.delta_time
@@ -32,7 +29,7 @@ class Player(pygame.sprite.Sprite):
         if pressed_keys[pygame.K_SPACE]:
             if self.actual_cooldown <= 0:
                 self.actual_cooldown = self.shoot_cooldown
-                self.bullets.append(Bullet(self.rect.centerx, self.rect.centery - 30, True))
+                self.shoot_func((self.rect.centerx, self.rect.centery - 30), True)
                 self.shoot_sound.play()
 
         if self.rect.left > 0:
@@ -46,7 +43,4 @@ class Player(pygame.sprite.Sprite):
         self.death_sound.play()
 
     def draw(self, surface):
-        surface.blit(self.image, self.rect)
-
-        for bullet in self.bullets:
-            bullet.draw(surface)
+        surface.blit(self.image, self.rect) 

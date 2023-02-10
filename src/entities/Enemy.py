@@ -7,7 +7,7 @@ from src.utils.GameTime import GameTime
 
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, image, x_position, y_position, enemy_wave):
+    def __init__(self, image, x_position, y_position, enemy_wave, shoot_func):
         super().__init__()
         self.enemy_wave = enemy_wave
         self.image = pygame.transform.scale(image, (30, 30))
@@ -21,6 +21,7 @@ class Enemy(pygame.sprite.Sprite):
         self.death_sound = pygame.mixer.Sound('sounds/enemy_death.wav')
 
         self.speed = 15
+        self.shoot_func = shoot_func
         self.shoot_cooldown = 2
         self.actual_cooldown = self.actual_cooldown = (random.random() * 2 - 1) + self.shoot_cooldown
         self.death_length = 0.4
@@ -54,11 +55,11 @@ class Enemy(pygame.sprite.Sprite):
         
         if self.actual_cooldown <= 0:
             self.shoot()
-            self.shoot_sound.play()
 
     def shoot(self):
-        self.enemy_wave.enemy_bullets.append(Bullet(self.rect.centerx, self.rect.centery, False))
+        self.shoot_func((self.rect.centerx, self.rect.centery), False)
         self.actual_cooldown = (random.random() * 2 - 1) + self.shoot_cooldown
+        self.shoot_sound.play()
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)

@@ -7,16 +7,16 @@ from src.utils.GameTime import GameTime
 
 
 class EnemyWave:
-    def __init__(self):
+    def __init__(self, shoot_func):
         self.enemy_bullets = []
         self.enemy_sprites = []
         self.enemy_sprites.append(pygame.image.load("images/enemy.png"))
         self.enemy_sprites.append(pygame.image.load("images/enemy1.png"))
         self.enemy_sprites.append(pygame.image.load("images/enemy2.png"))
         self.enemy_sprites.append(pygame.image.load("images/enemy3.png"))
-        self.enemy_list = [Enemy(self.enemy_sprites[random.randint(0, len(self.enemy_sprites) - 1)],
-                                 i * 50 + 50, 60, self)
-                           for i in range(10)]
+        self.enemy_list = [
+            Enemy(self.enemy_sprites[random.randint(0, len(self.enemy_sprites) - 1)], i * 50 + 50, 60, self, shoot_func)
+            for i in range(10)]
 
         self.move_cooldown = 1
         self.actual_cooldown = self.move_cooldown
@@ -27,7 +27,7 @@ class EnemyWave:
 
         for bullet in self.enemy_bullets:
             bullet.update()
-        
+
         if self.actual_cooldown > 0:
             self.actual_cooldown -= GameTime.delta_time
             return
@@ -39,7 +39,6 @@ class EnemyWave:
                 self.move_cooldown -= self.move_cooldown * 0.1
                 for enemy in self.enemy_list:
                     enemy.change_direction()
-        
 
         for enemy in self.enemy_list:
             enemy.move()
@@ -47,6 +46,6 @@ class EnemyWave:
     def draw(self, surface):
         for enemy in self.enemy_list:
             enemy.draw(surface)
-        
+
         for bullet in self.enemy_bullets:
             bullet.draw(surface)
