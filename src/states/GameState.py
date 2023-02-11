@@ -47,7 +47,7 @@ class GameState(State):
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    self.paused = not self.paused
+                    self.paused = True
                 
         if not self.running:
             return

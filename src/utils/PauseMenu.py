@@ -28,6 +28,10 @@ class PauseMenu:
                 pygame.quit()
                 sys.exit()
 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.resume_func()
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.resume_button.check_for_hover(mouse_pos):
                     self.resume_func()
