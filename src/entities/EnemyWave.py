@@ -1,4 +1,5 @@
 import random
+from operator import attrgetter
 
 from src.entities.Enemy import Enemy
 from src.utils.GameTime import GameTime
@@ -41,7 +42,8 @@ class EnemyWave:
         self.actual_cooldown = self.move_cooldown
 
         if len(self.enemy_list) > 0:
-            if self.enemy_list[-1].rect.x > 730 or self.enemy_list[0].rect.x < 30:
+            if max(self.enemy_list, key=attrgetter('rect.x')).rect.x > 730 or \
+                    min(self.enemy_list, key=attrgetter('rect.x')).rect.x < 30:
                 self.move_cooldown -= self.move_cooldown * 0.1
                 for enemy in self.enemy_list:
                     enemy.change_direction()
