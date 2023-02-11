@@ -24,6 +24,10 @@ class BulletManager:
     def update(self):
         for bullet in self.bullets:
             bullet.update()
+            
+            if bullet.rect.y > 900 or bullet.rect.y < -50:
+                self.bullets.remove(bullet)
+                bullet.kill()
         
             if bullet.is_friendly:
                 for enemy in self.enemy_list:
@@ -42,6 +46,7 @@ class BulletManager:
                 if self.statistics.lives == 0:
                     self.game_over_func()
                 return
+            
 
     def draw(self, surface):
         for bullet in self.bullets:

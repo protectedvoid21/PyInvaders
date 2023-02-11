@@ -12,7 +12,7 @@ class MenuState(State):
     def __init__(self):
         super().__init__()
         
-        self.title_label = Text('PyInvaders', 60, (170, 20), 'White')
+        self.title_label = Text('PyxInvaders', 60, (150, 20), 'White')
 
         self.play_button = Button((300, 100), (250, 150), 'green', (147, 255, 128), 'Play', 'black')
         self.options_button = Button((300, 100), (250, 300), 'green', (147, 255, 128), 'Options', 'black')

@@ -14,7 +14,7 @@ class StateManager:
 
         self.game_time = GameTime(60)
 
-        pygame.display.set_caption('PyInvaders')
+        pygame.display.set_caption('PyxInvaders')
 
         self.current_state = None
         self.change_state(MenuState())
