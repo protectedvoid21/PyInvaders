@@ -1,0 +1,71 @@
+[
+  {
+    "level": 1,
+    "rows": [
+      {
+        "start_x": 50,
+        "count": 10
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "rows": [
+      {
+        "start_x": 50,
+        "count": 10
+      },
+      {
+        "start_x": 150,
+        "count": 6
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "rows": [
+      {
+        "start_x": 50,
+        "count": 10
+      },
+      {
+        "start_x": 50,
+        "count": 10
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "rows": [
+      {
+        "start_x": 50,
+        "count": 10
+      },
+      {
+        "start_x": 50,
+        "count": 10
+      },
+      {
+        "start_x": 150,
+        "count": 6
+      }
+    ]
+  },
+  {
+    "level": 5,
+    "rows": [
+      {
+        "start_x": 50,
+        "count": 10
+      },
+      {
+        "start_x": 50,
+        "count": 10
+      },
+      {
+        "start_x": 50,
+        "count": 10
+      }
+    ]
+  }
+]
